@@ -33,18 +33,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/health_check")
+    // @GetMapping("/health_check")
+    // User Microservice와 Spring Cloud Gateway를 연동하기 위해 URI에 일괄적으로 '/user-service'추가 변경
+    @GetMapping("/user-service/health_check")
     public String status() {
-        return "It's Working in User Service";
+//        return "It's Working in User Service";
+        return String.format("It's Working in User Service on PORT %s", env.getProperty("local.server.port"));
     }
 
-    @GetMapping("/welcome")
+    // @GetMapping("/welcome")
+    @GetMapping("/user-service/welcome")
     public String welcome() {
 //        return env.getProperty("greeting.message");
         return greeting.getMessage();
     }
 
-    @PostMapping("/users")
+    // @PostMapping("/users")
+    @PostMapping("/user-service/users")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
