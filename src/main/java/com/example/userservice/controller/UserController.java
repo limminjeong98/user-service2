@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+// @RequestMapping("/")
+@RequestMapping("/user-service/")
 public class UserController {
 
     private Environment env;
@@ -39,21 +40,21 @@ public class UserController {
 
     // @GetMapping("/health_check")
     // User Microservice와 Spring Cloud Gateway를 연동하기 위해 URI에 일괄적으로 '/user-service'추가 변경
-    @GetMapping("/user-service/health_check")
+    // => 다시 Controller 상단에 @RequestMapping에 추가하여 prefix 격으로 사용
+//    @GetMapping("/user-service/health_check")
+    @GetMapping("/health_check")
     public String status() {
 //        return "It's Working in User Service";
         return String.format("It's Working in User Service on PORT %s", env.getProperty("local.server.port"));
     }
 
-    // @GetMapping("/welcome")
-    @GetMapping("/user-service/welcome")
+    @GetMapping("/welcome")
     public String welcome() {
 //        return env.getProperty("greeting.message");
         return greeting.getMessage();
     }
 
-    // @PostMapping("/users")
-    @PostMapping("/user-service/users")
+    @PostMapping("/users")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
