@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserByUserId(String userId) {
         UserEntity userEntity = userRepository.findByUserId(userId);
 
-        if(userEntity == null) {
+        if (userEntity == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
