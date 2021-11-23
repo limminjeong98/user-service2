@@ -28,7 +28,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         // http.authorizeRequests().antMatchers("/users/**").permitAll();
         http.authorizeRequests().antMatchers("/**")
-                .hasIpAddress("192.168.0.8") // IP 변경 필요
+                .hasIpAddress("10.110.121.167") // IP 변경 필요. 무선랜 어댑터 Wi-fi IPv4주소
                 .and()
                 .addFilter(getAuthenticationFilter());
 

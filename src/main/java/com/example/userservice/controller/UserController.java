@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-// @RequestMapping("/")
-@RequestMapping("/user-service/")
+@RequestMapping("/")
+// @RequestMapping("/user-service/")    apigateway-service의 application.yml에서 변경해서 더 이상 필요 없음
 public class UserController {
 
     private Environment env;
